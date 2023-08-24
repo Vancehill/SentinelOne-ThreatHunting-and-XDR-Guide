@@ -1,0 +1,6 @@
+// Query for Outbound communications, grouped by hostname and process that initiated communication 
+src.process.name matches "powershell" dst.ip.address = * 
+| let rfc1918 = not ($dst.ip.address matches "((127\\..*)|(192\\.168\\..*)|(10\\..*)|(172\\.1[6-9]\\..*)|(172\\.2[0-9]\\..*)|(172\\.3[0-1]\\..*)|(169\\.254\\..*)).*") 
+| filter rfc1918 = true
+| group hits = count(src.process.name), IPs = hacklist(dst.ip.address) by endpoint.name, src.process.storyline.id, src.process.parent.name
+| sort -hits
