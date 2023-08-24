@@ -1,0 +1,4 @@
+dataSource.name="Microsoft O365" activity_name='UserLoginFailed'  AND (!(unmapped.actor_user_email_addr in ('filteredAddress1@company.com', 'filteredAddress2@company.com'))) dataSource.category = 'security' 
+| group fails = count(activity_name='UserLoginFailed') by unmapped.actor_user_email_addr
+| sort -fails
+| limit 35
