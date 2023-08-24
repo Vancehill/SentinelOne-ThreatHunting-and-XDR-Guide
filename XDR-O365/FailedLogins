@@ -1,0 +1,1 @@
+dataSource.name=\"Microsoft O365\" activity_name='UserLoginFailed'  AND (!(unmapped.actor_user_email_addr in ('falsepositive@example.com', 'falsepositive2@example.com')))
